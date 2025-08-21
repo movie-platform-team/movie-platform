@@ -1,6 +1,7 @@
 package com.example.movieplatform.auth.utils;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,7 +15,8 @@ public class JwtUtil {
     // 나중에 옮기기
     private static final String SECRET = "bW92aWVwbGF0Zm9ybWp3dHRva2Vuc2VjcmV0a2V5";
 
-    private static final Key KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
+    // 키 디코딩
+    private static final Key KEY = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET));
 
     // 권한 넣기 (열거형으로 받아서 넣기?)
     public String generateAccessToken(String username, String role) {
